@@ -1,48 +1,45 @@
         let formData = {};
 
         function saveFormData() {
-            const form = document.getElementById('userRegistrationForm');
-            const data = new FormData(form);
-            
+            const data = new FormData(document.getElementById('userRegistrationForm'));
             formData.fullName = data.get('fullName') || '';
             formData.email = data.get('email') || '';
             formData.gender = data.get('gender') || '';
             formData.country = data.get('country') || '';
-            
-            formData.interests = [];
-            const interests = data.getAll('interests');
-            interests.forEach(interest => {
-                formData.interests.push(interest);
-            });
-            
-            console.log('Dados salvos:', formData);
-        }
+            formData.interests = data.getAll('interests') || [];
+        
+        localStorage.setItem('userFormData', JSON.stringify(formData));
+}
 
-        function loadFormData() {
-            if (Object.keys(formData).length > 0) {
-                document.getElementById('fullName').value = formData.fullName || '';
-                document.getElementById('email').value = formData.email || '';
-                document.getElementById('country').value = formData.country || '';
-                
-                if (formData.gender) {
-                    const genderRadio = document.querySelector(`input[name="gender"][value="${formData.gender}"]`);
-                    if (genderRadio) {
-                        genderRadio.checked = true;
-                    }
-                }
-                
-                if (formData.interests && formData.interests.length > 0) {
-                    formData.interests.forEach(interest => {
-                        const checkbox = document.querySelector(`input[name="interests"][value="${interest}"]`);
-                        if (checkbox) {
-                            checkbox.checked = true;
-                        }
-                    });
-                }
-                
-                document.getElementById('successMessage').style.display = 'block';
+      function loadFormData() {
+    const savedData = localStorage.getItem('userFormData');
+    if (savedData) {
+        formData = JSON.parse(savedData);
+
+        document.getElementById('fullName').value = formData.fullName || '';
+        document.getElementById('email').value = formData.email || '';
+        document.getElementById('country').value = formData.country || '';
+
+        if (formData.gender) {
+            const genderRadio = document.querySelector(`input[name="gender"][value="${formData.gender}"]`);
+            if (genderRadio) {
+                genderRadio.checked = true;
             }
         }
+
+        if (formData.interests && formData.interests.length > 0) {
+            formData.interests.forEach(interest => {
+                const checkbox = document.querySelector(`input[name="interests"][value="${interest}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        document.getElementById('successMessage').style.display = 'block';
+    }
+}
+
 
         function validatePasswords() {
             const password = document.getElementById('password').value;
@@ -166,3 +163,4 @@
                 }
             });
         });
+
