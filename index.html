@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cadastro de Usuário</h1>
+            <p>Preencha todos os campos obrigatórios para criar sua conta</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                Dados salvos com sucesso! O formulário foi preenchido automaticamente com seus dados anteriores.
+            </div>
+
+            <form id="userRegistrationForm" method="POST" action="/submit_form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="fullName" class="form-label required">Nome Completo</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        class="form-input"
+                        placeholder="Digite seu nome completo (ex: João Silva Santos)"
+                        required
+                    >
+                    <div class="error-message" id="fullNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label required">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input"
+                        placeholder="seu.email@exemplo.com"
+                        required
+                    >
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label required">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input"
+                        placeholder="Mínimo 8 caracteres"
+                        required
+                        minlength="8"
+                    >
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label required">Confirmar Senha</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        class="form-input"
+                        placeholder="Digite a senha novamente"
+                        required
+                        minlength="8"
+                    >
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Gênero</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="male" name="gender" value="masculino">
+                            <label for="male">Masculino</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="female" name="gender" value="feminino">
+                            <label for="female">Feminino</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="other" name="gender" value="outro">
+                            <label for="other">Outro</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Interesses</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sports" name="interests" value="esportes">
+                            <label for="sports">Esportes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="music" name="interests" value="musica">
+                            <label for="music">Música</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="technology" name="interests" value="tecnologia">
+                            <label for="technology">Tecnologia</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="profilePhoto" class="form-label">Foto de Perfil</label>
+                    <input 
+                        type="file" 
+                        id="profilePhoto" 
+                        name="profilePhoto" 
+                        class="file-input"
+                        accept="image/*"
+                    >
+                    <div class="error-message" id="profilePhotoError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country" class="form-label">País de Origem</label>
+                    <select id="country" name="country" class="select-input">
+                        <option value="">Selecione um país</option>
+                        <option value="brasil">Brasil</option>
+                        <option value="argentina">Argentina</option>
+                        <option value="chile">Chile</option>
+                        <option value="colombia">Colômbia</option>
+                        <option value="peru">Peru</option>
+                        <option value="uruguai">Uruguai</option>
+                        <option value="paraguai">Paraguai</option>
+                        <option value="venezuela">Venezuela</option>
+                        <option value="bolivia">Bolívia</option>
+                        <option value="equador">Equador</option>
+                        <option value="eua">Estados Unidos</option>
+                        <option value="canada">Canadá</option>
+                        <option value="mexico">México</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="espanha">Espanha</option>
+                        <option value="franca">França</option>
+                        <option value="alemanha">Alemanha</option>
+                        <option value="italia">Itália</option>
+                        <option value="reino_unido">Reino Unido</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="clear-btn" onclick="clearForm()">Limpar</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
